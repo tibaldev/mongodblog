@@ -1,0 +1,8 @@
+extend layout
+block content
+	form(action="/admin/register", method="post" name="formRegister")
+		fieldset
+			legend Enregistrement nouvel admin
+			input(type="text", name="username", placeholder="Username")
+			input(type="password", name="password", placeholder="Password")
+			input(type="submit")

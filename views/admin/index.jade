@@ -1,0 +1,9 @@
+extend layout
+block content
+	if (user)
+		ul
+			li #{user.username}
+			li: a(href="/admin/logout", title="déconnexion") déconnexion
+		ul
+			li: a(href="/admin/register", title="nouvel admin") nouvel admin	
+			li: a(href="/", title="blog") front-end

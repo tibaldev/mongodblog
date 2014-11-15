@@ -1,11 +1,9 @@
 doctype
 html
-    head
-        title admin
-        link(rel="stylesheet", href="/css/style.css")
-    body
-        header
-            h1 admin
-        .container
-            block content
-        footer
+  head
+    title admin
+    link(rel="stylesheet", href="/css/style.css")
+  body
+    include ./include/head.jade
+    block principal
+    

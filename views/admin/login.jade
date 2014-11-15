@@ -1,8 +1,9 @@
 extend layout
-block content
-	form(action="/admin/login", method="post" name="formLogin")
-		fieldset
-			legend Connexion
-			input(type="text", name="username", placeholder="Username")
-			input(type="password", name="password", placeholder="Password")
-			input(type="submit")
+block principal
+  .principal
+    form(action="/admin/login", method="post" name="formLogin")
+      fieldset
+        legend connexion
+        input(type="text", name="username", placeholder="pseudo")
+        input(type="password", name="password", placeholder="pass")
+        input(type="submit" value="hop")

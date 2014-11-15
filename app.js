@@ -37,6 +37,7 @@ mongoose.connect(appData.mongoconnect);
 /** --- ROUTES --- **/
 require('./routes/index.js')(app, appData);
 require('./routes/admin.js')(app, appData);
+//app.get('*', function(req, res) { res.send('Cette page n\'existe pas :)', 404) });
 
 
 /** --- SERVEUR --- **/

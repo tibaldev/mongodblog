@@ -1,9 +1,32 @@
 extend layout
-block content
-	if (user)
-		ul
-			li #{user.username}
-			li: a(href="/admin/logout", title="déconnexion") déconnexion
-		ul
-			li: a(href="/admin/register", title="nouvel admin") nouvel admin	
-			li: a(href="/", title="blog") front-end
+block principal
+  .principal
+    
+    h2 liste des articles
+    for article in articles
+      li #{article.titre}
+    else
+      p aucun article
+
+    h2 ajouter un article
+    form(action="/admin/addarticle", method="post" name="formAddArticle", enctype="multipart/form-data")
+      input(type="text", name="titre", placeholder="titre" required)
+      br
+      textarea(name="textjade", rows="10", cols="100", id="textjade")
+        | extend layout
+        | block article
+        |   h3 titre de l'article
+        |   ul
+        |     li: a(href="google.fr") lien
+        |     li avec du texte
+        |   h4 titre de paragraphe
+        |   p
+        |     | Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
+        |     | Morbi consectetur erat id nulla ornare, molestie pharetra magna aliquam. 
+        |     | Ut neque erat, ultricies ut imperdiet eget, convallis quis est. 
+      br
+      a(href="/admin/addtest" target="_blank" id="linktest") test
+      input(type="submit" value="hop")
+
+  script(type="text/javascript", src='/js/jquery.js')
+  script(type="text/javascript", src='/js/rendu.js')

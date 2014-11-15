@@ -1,12 +1,16 @@
 var passport = require('passport');
 var Account = require('../models/db_Account');
+var Article = require('../models/db_Article');
 
 module.exports = function(app, appData) {
     
     // GET - accueil admin
     app.get('/admin', function (req, res) {
         if (req.user) {
-            res.render('admin/', { user : req.user });
+            // Récupérer les articles
+            Article.find({}, function (err, articles) {
+                res.render('admin/', { user: req.user, articles: articles });
+            });
         } else {
             res.render('admin/login');
         }
@@ -39,7 +43,7 @@ module.exports = function(app, appData) {
         Account.register(
             new Account({ username : req.body.username }), req.body.password, function(err, account) {
             if (err) {
-	            return res.render('admin/register', { account : account });
+	            return res.render('admin/register', { account: account });
 	        }
 
 	        passport.authenticate('local')(req, res, function () {
@@ -47,4 +51,28 @@ module.exports = function(app, appData) {
 	        });
 	    });
 	});
+
+    // POST - ajout d'un article
+    app.post('/admin/addarticle', function(req, res) {
+
+    });
+
+    // GET - gestion du test (ajout dans le fichier articles/test.jade)
+    app.get('/admin/addtest?:data', function(req, res) {
+
+        if (req.query['data'] && req.user) {
+            var text = JSON.parse(req.query['data']);
+
+            var fs = require('fs');
+            var testfile = app.get('views') + '/articles/test.jade';
+            fs.writeFile(testfile, text);
+
+            // delay pour prise en compte du fichier (200 marche, 500 securité)
+            setTimeout(function(){ res.render('articles/test') }, 500);
+        
+        } else {
+            res.redirect('/admin');
+        }
+    });
 };
+

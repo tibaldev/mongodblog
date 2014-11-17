@@ -1,6 +1,6 @@
 /** --- MODULES --- **/
 var path           = require('path'),
-	express        = require('express'), 
+    express        = require('express'), 
     http           = require('http'), 
     bodyParser     = require('body-parser'),
     session        = require('express-session'),
@@ -37,11 +37,12 @@ mongoose.connect(appData.mongoconnect);
 /** --- ROUTES --- **/
 require('./routes/index.js')(app, appData);
 require('./routes/admin.js')(app, appData);
+require('./routes/article.js')(app, appData);
 //app.get('*', function(req, res) { res.send('Cette page n\'existe pas :)', 404) });
 
 
 /** --- SERVEUR --- **/
 if ('development' == app.get('env')) {
- 	app.use(errorHandler());
+     app.use(errorHandler());
 }
 app.listen(app.get('port'));

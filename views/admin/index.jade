@@ -3,13 +3,17 @@ block principal
   .principal
     
     h2 liste des articles
-    for article in articles
-      li #{article.titre}
-    else
-      p aucun article
+    ul
+      for article in articles
+        li 
+          a(href="/article/#{article.id}") #{article.titre}
+          em &nbsp;le #{article.date}&nbsp;
+          a(href="/admin/article/remove/#{article.id}") suppr.
+      else
+        p aucun article
 
     h2 ajouter un article
-    form(action="/admin/addarticle", method="post" name="formAddArticle", enctype="multipart/form-data")
+    form(action="/admin/article/add", method="post")
       input(type="text", name="titre", placeholder="titre" required)
       br
       textarea(name="textjade", rows="10", cols="100", id="textjade")
@@ -25,7 +29,8 @@ block principal
         |     | Morbi consectetur erat id nulla ornare, molestie pharetra magna aliquam. 
         |     | Ut neque erat, ultricies ut imperdiet eget, convallis quis est. 
       br
-      a(href="/admin/addtest" target="_blank" id="linktest") test
+      a(href="/admin/addtest" target="_blank" id="linktest") test &nbsp;
+      input(type="hidden" name="textvalue" id="linkhidden")
       input(type="submit" value="hop")
 
   script(type="text/javascript", src='/js/jquery.js')

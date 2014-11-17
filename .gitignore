@@ -1,0 +1,5 @@
+node_modules/
+local.0
+local.ns
+_tmp/
+mongod.lock

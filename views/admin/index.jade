@@ -1,13 +1,18 @@
 extend layout
 block principal
-  .principal
-    
+  .principal   
     h2 liste des articles
     ul
       for article in articles
         li 
           a(href="/article/#{article.id}") #{article.titre}
-          em &nbsp;le #{article.date}&nbsp;
+          em 
+            | &nbsp;#{article.date}
+            if (article.date != article.datemodif)
+              | &nbsp;(modifié #{article.datemodfi})
+          | &nbsp-> 
+          a(href="/admin/article/edit/#{article.id}") modif.
+          | &nbsp/&nbsp;
           a(href="/admin/article/remove/#{article.id}") suppr.
       else
         p aucun article
@@ -29,9 +34,9 @@ block principal
         |     | Morbi consectetur erat id nulla ornare, molestie pharetra magna aliquam. 
         |     | Ut neque erat, ultricies ut imperdiet eget, convallis quis est. 
       br
-      a(href="/admin/addtest" target="_blank" id="linktest") test &nbsp;
+      a(href="/admin/addtest" target="_blank" id="linktest") test
+      | &nbsp;
       input(type="hidden" name="textvalue" id="linkhidden")
       input(type="submit" value="hop")
-
   script(type="text/javascript", src='/js/jquery.js')
   script(type="text/javascript", src='/js/rendu.js')

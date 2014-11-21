@@ -5,7 +5,8 @@ var Article = new Schema({
 	id: String,
 	titre: String,
 	auteur: String,
-	date: String
+	date: String,
+    datemodif: String
 });
 
 module.exports = mongoose.model('Article', Article);

@@ -30,7 +30,7 @@ module.exports = function(app, appData) {
     // GET - déconnexion back-end
     app.get('/admin/logout', function (req, res) {
         req.logout();
-        res.redirect('/');
+        res.redirect('/admin');
     });
 
     // POST - login (authentification)

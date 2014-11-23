@@ -1,0 +1,13 @@
+.presentation
+  h2 Présentation
+  p 
+    | Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
+    | Morbi consectetur erat id nulla ornare, molestie pharetra magna aliquam. 
+    | Ut neque erat, ultricies ut imperdiet eget, convallis quis est. 
+  h2 Liste des articles
+  ul
+    for article in articles
+      li 
+        a(href="/article/#{article.id}") #{article.titre}
+    else
+      li aucun article

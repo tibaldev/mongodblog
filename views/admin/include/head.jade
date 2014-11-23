@@ -1,11 +1,12 @@
-h1 
-  a(href="/admin" title="accueil admin") admin
-if (user)
-  p
-    a(href="/", title="blog") front-end
-    | &nbsp;|&nbsp;
-    a(href="/admin/register", title="nouvel admin") nouvel admin
-    | &nbsp;|&nbsp;
-    | #{user.username}
-    | &nbsp;|&nbsp;
-    a(href="/admin/logout", title="déconnexion") déconnexion
+header
+  h1 
+    a(href="/admin" title="accueil admin") admin
+  if (user)
+    p
+      a(href="/", title="blog") front-end
+      | &nbsp;|&nbsp;
+      a(href="/admin/register", title="nouvel admin") nouvel admin
+      | &nbsp;|&nbsp;
+      | #{user.username}
+      | &nbsp;|&nbsp;
+      a(href="/admin/logout", title="déconnexion") déconnexion

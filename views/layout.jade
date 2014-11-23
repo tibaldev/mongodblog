@@ -4,8 +4,6 @@ html
     title #{title}
     link(rel="stylesheet", href="/css/style.css")
   body
-    header
-      h1 #{title}
-    .container
-      block content
-    footer
+    include ./include/head.jade
+    include ./include/presentation.jade
+    block principal

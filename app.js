@@ -15,6 +15,7 @@ var path           = require('path'),
 /** --- CONFIGURATION --- **/
 app.set('port', process.env.PORT || appData.port);
 app.set('views', __dirname + '/views');
+app.set('public', __dirname + '/public');
 app.set('view engine', 'jade');
 app.set('env', 'development');
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -38,7 +39,9 @@ mongoose.connect(appData.mongoconnect);
 require('./routes/index.js')(app, appData);
 require('./routes/admin.js')(app, appData);
 require('./routes/article.js')(app, appData);
-//app.get('*', function(req, res) { res.send('Cette page n\'existe pas :)', 404) });
+app.get('*', function(req, res) { 
+    res.status(404).render('404', { title: appData.title });
+});
 
 
 /** --- SERVEUR --- **/

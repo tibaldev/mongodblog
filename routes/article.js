@@ -10,10 +10,10 @@ module.exports = function(app, appData) {
             var text = JSON.parse(req.query['data']);
 
             var fs = require('fs');
-            fs.writeFile(app.get('views') + '/articles/test.jade', text);
+            fs.writeFile(app.get('views') + '/articles/ecrits/test.jade', text);
 
             // delay pour prise en compte du fichier (200 marche, 500 securité)
-            setTimeout(function(){ res.render('articles/test') }, 500);
+            setTimeout(function(){ res.render('articles/ecrits/test') }, 500);
         
         } else {
             res.redirect('/admin');
@@ -30,7 +30,10 @@ module.exports = function(app, appData) {
             var date = convertDate(new Date());
 
             var fs = require('fs');
-            fs.writeFile(app.get('views') + '/articles/' + id, text);
+            // Ajout de l'article (pour la vue article)
+            fs.writeFile(app.get('views') + '/articles/ecrits/' + id + '.jade', text);
+            // Ajout de l'article dans le dernier.jade (accueil)
+            fs.writeFile(app.get('views') + '/articles/ecrits/dernier.jade', text);
 
             var article = new Article ({
                 id: id,
@@ -53,7 +56,7 @@ module.exports = function(app, appData) {
 
     		var id = req.params.id;
     		var fs = require('fs');
-    		fs.unlink(app.get('views') + '/articles/' + id);
+    		fs.unlink(app.get('views') + '/articles/ecrits/' + id + '.jade');
 
 			Article.find({ id : req.params.id }).remove().exec();
     	}
@@ -66,7 +69,7 @@ module.exports = function(app, appData) {
             var id = req.params.id;
             
             fs = require('fs');
-            fs.readFile(app.get('views') + '/articles/' + id, 'utf8', function (err, data) {
+            fs.readFile(app.get('views') + '/articles/ecrits/' + id + '.jade', 'utf8', function (err, data) {
                 Article.findOne({ id : id }, function (err, article) {
                     res.render('admin/edit', { user: req.user, article: article, contenu: data });
                 });
@@ -83,7 +86,7 @@ module.exports = function(app, appData) {
 
             // suppression de l'article
             var fs = require('fs');
-            fs.unlink(app.get('views') + '/articles/' + exid);
+            fs.unlink(app.get('views') + '/articles/ecrits/' + exid + '.jade');
 
             Article.find({ id : exid }).remove().exec();
           
@@ -98,7 +101,7 @@ module.exports = function(app, appData) {
                 var datemodif = convertDate(new Date());
 
                 var fs = require('fs');
-                fs.writeFile(app.get('views') + '/articles/' + id, text);
+                fs.writeFile(app.get('views') + '/articles/ecrits/' + id + '.jade', text);
 
                 var article = new Article ({
                     id: id,

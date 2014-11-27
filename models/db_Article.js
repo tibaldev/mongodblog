@@ -3,7 +3,8 @@ var mongoose = require('mongoose'),
 
 var Article = new Schema({
 	id: String,
-	titre: String,
+    urljade: String,
+    titre: String,
 	auteur: String,
 	date: String,
     datemodif: String

@@ -3,17 +3,17 @@ var Article = require('../models/db_Article');
 
 module.exports = function(app, appData) {
 
-    // GET - gestion du test (ajout dans le fichier articles/test.jade)
+    // GET - gestion du test (ajout dans le fichier article/test.jade)
     app.get('/admin/addtest?:data', function(req, res) {
 
         if (req.query['data'] && req.user) {
             var text = JSON.parse(req.query['data']);
 
             var fs = require('fs');
-            fs.writeFile(app.get('views') + '/articles/ecrits/test.jade', text);
+            fs.writeFile(app.get('views') + '/article/test.jade', text);
 
             // delay pour prise en compte du fichier (200 marche, 500 securité)
-            setTimeout(function(){ res.render('articles/ecrits/test') }, 500);
+            setTimeout(function(){ res.render('article/test') }, 500);
         
         } else {
             res.redirect('/admin');
@@ -22,21 +22,21 @@ module.exports = function(app, appData) {
 
     // POST - ajout d'un article
     app.post('/admin/article/add', function (req, res) {
-        if (req.body.textvalue && req.body.titre && req.user) {
+        if (req.body.textvalue && req.body.titre && req.user && req.body.urljade) {
             var titre = req.body.titre;
+            var urljade = req.body.urljade;
             var text = JSON.parse(req.body.textvalue);
 
-            var id = Date.now() + '-' + titre.split(' ').join('-');
+            var id = Date.now() + '-' + urljade;
             var date = convertDate(new Date());
 
             var fs = require('fs');
             // Ajout de l'article (pour la vue article)
-            fs.writeFile(app.get('views') + '/articles/ecrits/' + id + '.jade', text);
-            // Ajout de l'article dans le dernier.jade (accueil)
-            fs.writeFile(app.get('views') + '/articles/ecrits/dernier.jade', text);
+            fs.writeFile(app.get('views') + '/article/' + id + '.jade', text);
 
             var article = new Article ({
                 id: id,
+                urljade: urljade,
                 titre: titre,
                 auteur: req.user.username,
                 date: date,
@@ -56,9 +56,9 @@ module.exports = function(app, appData) {
 
     		var id = req.params.id;
     		var fs = require('fs');
-    		fs.unlink(app.get('views') + '/articles/ecrits/' + id + '.jade');
+    		fs.unlink(app.get('views') + '/article/' + id + '.jade');
 
-			Article.find({ id : req.params.id }).remove().exec();
+			Article.find({ id : id }).remove().exec();
     	}
     	res.redirect('/admin');
     });
@@ -69,7 +69,7 @@ module.exports = function(app, appData) {
             var id = req.params.id;
             
             fs = require('fs');
-            fs.readFile(app.get('views') + '/articles/ecrits/' + id + '.jade', 'utf8', function (err, data) {
+            fs.readFile(app.get('views') + '/article/' + id + '.jade', 'utf8', function (err, data) {
                 Article.findOne({ id : id }, function (err, article) {
                     res.render('admin/edit', { user: req.user, article: article, contenu: data });
                 });
@@ -79,32 +79,35 @@ module.exports = function(app, appData) {
     });
 
     // POST - modification d'un article
-    // TODO - réutiliser les fonctionnalités existantes (suppression et ajout)
     app.post('/admin/article/edit', function (req, res) {
-        if (req.user && req.body.articleid) {
-            var exid = req.body.articleid;
+        if (req.user && req.body.id) {
+            var exid = req.body.id;
 
-            // suppression de l'article
-            var fs = require('fs');
-            fs.unlink(app.get('views') + '/articles/ecrits/' + exid + '.jade');
-
-            Article.find({ id : exid }).remove().exec();
-          
-            // ajout du nouvel article
             if (req.body.textvalue && req.body.titre && req.user) {
+                
+                // traitement nouvel article
                 var titre = req.body.titre;
+                var urljade = req.body.urljade;
                 var text = JSON.parse(req.body.textvalue);
 
-                // nouvel id : on garde le timestamp de création, et on change la partie titre
-                var id = exid.split('-')[0] + '-' + titre.split(' ').join('-');
-                var date = req.body.articledate;
+                var id = exid.split('-')[0] + '-' + urljade;
+                var date = req.body.date;
                 var datemodif = convertDate(new Date());
 
+
+                // suppression de l'ancien
                 var fs = require('fs');
-                fs.writeFile(app.get('views') + '/articles/ecrits/' + id + '.jade', text);
+                fs.unlink(app.get('views') + '/article/' + exid + '.jade');
+
+                Article.find({ id : exid }).remove().exec();
+
+                // ajout du modifié
+                var fs = require('fs');
+                fs.writeFile(app.get('views') + '/article/' + id + '.jade', text);
 
                 var article = new Article ({
                     id: id,
+                    urljade: urljade,
                     titre: titre,
                     auteur: req.user.username,
                     date: date,

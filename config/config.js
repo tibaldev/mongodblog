@@ -1,7 +1,7 @@
 var appData = new Object();
 
 appData.port  = 8080;
-appData.title = 'tibaldev';
+appData.title = 'Tibaldev';
 
 appData.mongoconnect = 'mongodb://localhost/mongodblog';
 

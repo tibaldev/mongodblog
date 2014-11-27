@@ -17,14 +17,16 @@ block principal
       else
         p aucun article
 
-    h2 ajouter un article
+    h2 ajouter un article (jade)
     form(action="/admin/article/add", method="post")
       input(type="text", name="titre", placeholder="titre" required)
+      input(type="text", name="urljade", placeholder="url / jade" required)
       br
       textarea(name="textjade", rows="10", cols="100", id="textjade")
         | extend ../layout
-        | block article
-        |   h2 titre
+        | block principal
+        |   article
+        |     h2 titre
       br
       a(href="/admin/addtest" target="_blank" id="linktest") test
       | &nbsp;

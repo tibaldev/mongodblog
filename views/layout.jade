@@ -4,6 +4,16 @@ html
     title #{title}
     link(rel="stylesheet", href="/css/style.css")
   body
-    include ./include/head.jade
-    include ./include/presentation.jade
-    block principal
+    #global
+      include ./include/head.jade
+      #centre
+        include ./include/navigation.jade
+        #contenu
+          article
+            if (article)
+              h2 #{article.titre}
+              div.infos
+                | rédigé le #{article.date}
+                if (article.date != article.datemodif)
+                  | &nbsp;(modifié le #{article.datemodif})
+            block article

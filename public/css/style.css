@@ -10,45 +10,36 @@
 }
 
 
-/** --- GENERAL --- **/
-p, h1, h2, h3, h4, h5 {
-    padding: 5px;
+/** --- POSITIONNEMENT --- **/
+body { 
+    padding: 10px 5px;
+}
+#global {
+    width: 960px;
+    margin: 0 auto;
+}
+#centre {
+    width: 100%;
 }
 
-body {
-    color: #3D3D3D;
-    background: #FAFAFA url(img/noise.png) 0 0 repeat;
-    font-family: 'Myriad Pro Regular', Arial;
-    font-size: 100%;
+/*Bloc du haut */
+header {
+    margin-bottom: 5px;
 }
-
-header, article, .minibloc {
-    display: block;
-    padding: 8px;
-    margin: 8px;
-    background-color: #FAFAFA;
-    border-radius: 2px;
-    box-shadow: 1px 1px 3px #3D3D3D;
-}
-
-h1 {
+h1 { 
     display: inline-block;
 }
-
-nav {
-    float: right;
+nav { 
+    float: right; 
 }
-
 nav ul {
     padding-left: 15px;
     margin: 0 8px 0 0;
 }
-
 nav ul li {
     display: inline;
     list-style: none;
 }
-
 nav ul li img {
     position: relative;
     right: 5px;
@@ -62,13 +53,39 @@ nav ul li + li::before {
     margin: 0 10px;
 }
 
-.bloc {
-    display: block;
-    float: left;
+/* Bloc de gauche */
+#navigation {
     width: 300px;
+    float: left;
 }
 
-/** --- TEXTE --- **/
+/* Bloc de droite */
+#contenu {
+    margin-left: 320px;
+}
+article {
+    padding: 8px;
+}
+
+/* Communs */
+header, #navigation, #contenu {
+    padding: 8px;
+    background-color: #FAFAFA;
+    border-radius: 2px;
+    box-shadow: 1px 1px 3px #3D3D3D;
+}
+.bloc {
+    padding: 10px;
+}
+
+/** --- TEXTE - COULEUR - FONDS --- **/
+body {
+    color: #3D3D3D;
+    background: #FAFAFA url(img/noise.png) 0 0 repeat;
+    font-family: 'Myriad Pro Regular', Arial;
+    font-size: 100%;
+}
+
 p {
     text-align: justify;
 }
@@ -90,6 +107,9 @@ h1 a:hover {
     text-decoration: none;
 }
 
+div.infos {
+    font-style: italic;
+}
 
 /** --- FORMS --- **/
 
@@ -98,6 +118,7 @@ h1 a:hover {
 
 
 /** --- CLASSES --- **/
-.centre {
+.centre,
+.centre p {
     text-align: center;
 }

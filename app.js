@@ -1,7 +1,9 @@
 /** --- MODULES --- **/
 var path           = require('path'),
     express        = require('express'), 
-    http           = require('http'), 
+    http           = require('http'),
+    formidable     = require('formidable'),
+    fs             = require('fs'),
     bodyParser     = require('body-parser'),
     session        = require('express-session'),
     methodOverride = require('method-override'),
@@ -38,7 +40,7 @@ mongoose.connect(appData.mongoconnect);
 /** --- ROUTES --- **/
 require('./routes/index.js')(app, appData);
 require('./routes/admin.js')(app, appData);
-require('./routes/article.js')(app, appData);
+require('./routes/article.js')(app, fs, formidable, appData);
 app.get('*', function(req, res) { 
     res.status(404).render('404', { title: appData.title });
 });
@@ -46,6 +48,6 @@ app.get('*', function(req, res) {
 
 /** --- SERVEUR --- **/
 if ('development' == app.get('env')) {
-     app.use(errorHandler());
+    app.use(errorHandler());
 }
 app.listen(app.get('port'));

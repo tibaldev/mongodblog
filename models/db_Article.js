@@ -7,7 +7,8 @@ var Article = new Schema({
     titre: String,
 	auteur: String,
 	date: String,
-    datemodif: String
+    datemodif: String,
+    enligne: Boolean
 });
 
 module.exports = mongoose.model('Article', Article);

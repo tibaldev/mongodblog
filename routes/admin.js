@@ -8,7 +8,7 @@ module.exports = function(app, appData) {
     app.get('/admin', function (req, res) {
         if (req.user) {
             // Récupérer les articles
-            Article.find({}, function (err, articles) {
+            Article.find({}).sort({id: 'desc'}).exec(function (err, articles) {
                 res.render('admin/', { user: req.user, articles: articles });
             });
         } else {
@@ -24,7 +24,9 @@ module.exports = function(app, appData) {
     
     // GET - formulaire d'ajout d'admin 
     app.get('/admin/register', function (req, res) {
-        res.render('admin/register');
+        if (req.user) {
+            res.render('admin/register');
+        }
     });
 
     // GET - déconnexion back-end

@@ -1,36 +1,72 @@
 extend layout
 block principal
-  .principal   
-    h2 liste des articles
+  .principal 
+    h2 todo
     ul
-      for article in articles
-        li 
-          a(href="/article/#{article.id}") #{article.titre}
-          em 
-            | &nbsp;#{article.date}
-            if (article.date != article.datemodif)
-              | &nbsp;(modifié #{article.datemodfi})
-          | &nbsp-> 
-          a(href="/admin/article/edit/#{article.id}") modif.
-          | &nbsp/&nbsp;
-          a(href="/admin/article/remove/#{article.id}") suppr.
-      else
-        p aucun article
+      li créer un import d'images pour les utiliser dans les articles
+      li créer les routes / vues contact et profil
+      li finir / améliorer  le design 
 
-    h2 ajouter un article (jade)
+    h2 liste des articles (desc)
+    if (articles.length > 0)
+      table
+        thead
+          tr
+            th nom
+            th date
+            th actions
+        tbody
+          for article in articles
+            tr 
+              td
+                a(href="/admin/article/#{article.id}") #{article.titre}
+              td 
+                | #{article.date}
+                if (article.date != article.datemodif)
+                  | &nbsp;(modifié #{article.datemodfi})
+              td
+                a(href="/admin/article/edit/#{article.id}") modif.
+                | &nbsp/&nbsp;
+                a(href="/admin/article/remove/#{article.id}") suppr.
+                | &nbsp/&nbsp;
+                if (article.enligne)
+                  | en ligne
+                else
+                  a(href="/admin/article/online/#{article.id}") mettre en ligne
+    else
+      p aucun article
+
+    // formulaire d'ajout d'img dans /img/biblio/
+    h2 upload d'images (/img/biblio/)
+    form(action="/admin/img/add", method="post", enctype="multipart/form-data")
+      input(type="file", name="img", required)
+      input(type="submit" value="hop !")
+
+    // formulaire d'ajout via le textarea
+    h2 ajouter un article (textarea jade)
     form(action="/admin/article/add", method="post")
-      input(type="text", name="titre", placeholder="titre" required)
-      input(type="text", name="urljade", placeholder="url / jade" required)
+      label(for="titre") titre
+      input(type="text", id="titre", name="titre", required)
+      label(for="urljade") url / jade
+      input(type="text", id="urljade", name="urljade", required)      
       br
       textarea(name="textjade", rows="10", cols="100", id="textjade")
         | extend ../layout
-        | block principal
-        |   article
-        |     h2 titre
-      br
-      a(href="/admin/addtest" target="_blank" id="linktest") test
-      | &nbsp;
+        | block article
       input(type="hidden" name="textvalue" id="linkhidden")
-      input(type="submit" value="hop")
+      br
+      input(type="submit" value="hop !")
+
+    // formulaire d'ajout via un fichier jade externe
+    h2 ajouter un article (upload .jade)
+    form(action="/admin/article/addfile", method="post", enctype="multipart/form-data")
+      label(for="titre") titre
+      input(type="text", id="titre", name="titre", required)
+      | &nbsp;
+      label(for="urljade") url / jade
+      input(type="text", id="urljade", name="urljade", required)
+      input(type="file", name="jadefile", required)
+      input(type="submit" value="hop !")
+
   script(type="text/javascript", src='/js/jquery.js')
   script(type="text/javascript", src='/js/rendu.js')

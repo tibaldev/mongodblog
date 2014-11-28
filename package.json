@@ -15,6 +15,7 @@
     "mongoose": "3.x.x",
     "passport": "0.2",
     "passport-local": "1.x.x",
-    "passport-local-mongoose": "1.x"
+    "passport-local-mongoose": "1.x",
+    "formidable": "1.x.x"
   }
 }

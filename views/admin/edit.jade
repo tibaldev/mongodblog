@@ -3,17 +3,17 @@ block principal
   .principal
     h2 modification de l'article : #{article.titre}
     form(action="/admin/article/edit", method="post")
-      input(type="text", name="titre", placeholder="titre" value="#{article.titre}" required)
-      input(type="text", name="urljade", placeholder="titre" value="#{article.urljade}" required)
+      label(for="titre") titre 
+      input(type="text", name="titre", id="titre", value="#{article.titre}" required)
+      label(for="urljade") url / jade 
+      input(type="text", name="urljade", id="urljade", value="#{article.urljade}" required)
       br
       textarea(name="textjade", rows="10", cols="100", id="textjade") #{contenu}
       br
-      a(href="/admin/addtest" target="_blank" id="linktest") test
-      | &nbsp;
       input(type="hidden" name="textvalue" id="linkhidden")
       input(type="hidden" name="id" value="#{article.id}")
       input(type="hidden" name="date" value="#{article.date}")
-      input(type="submit" value="hop")
+      input(type="submit" value="hop !")
       | La modification remet l'article hors-ligne
   script(type="text/javascript", src='/js/jquery.js')
   script(type="text/javascript", src='/js/rendu.js')

@@ -3,6 +3,7 @@ html
   head
     title #{title}
     link(rel="stylesheet", href="/css/style.css")
+    link(rel="stylesheet", href="/css/tomorrow-night.css")
   body
     #global
       include ./include/head.jade
@@ -17,3 +18,7 @@ html
                 if (article.date != article.datemodif)
                   | &nbsp;(modifié le #{article.datemodif})
             block article
+
+    script(type="text/javascript", src="/js/jquery.js")
+    script(type="text/javascript", src="/js/highlight.pack.js")
+    script(type="text/javascript", src="/js/frontend.js")

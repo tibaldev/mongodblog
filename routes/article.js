@@ -94,7 +94,7 @@ module.exports = function(app, fs, formidable, appData) {
             var id = req.params.id;
             Article.findOne({ id : id, enligne: true }, function (err, article) {
                 res.render('article/' + id, {
-                    'title': appData.title + ' - ' + article.titre, 
+                    'title': appData.title, 
                     'h1': appData.title, 
                     article: article
                 });
@@ -106,7 +106,7 @@ module.exports = function(app, fs, formidable, appData) {
     app.get('/admin/article/edit/:id', function (req, res) {
         if (req.user && req.params.id) {
             var id = req.params.id;
-            
+
             fs.readFile(app.get('views') + '/article/' + id + '.jade', 'utf8', function (err, data) {
                 Article.findOne({ id : id }, function (err, article) {
                     res.render('admin/edit', { user: req.user, article: article, contenu: data });
@@ -121,8 +121,9 @@ module.exports = function(app, fs, formidable, appData) {
     app.post('/admin/article/edit', function (req, res) {
         if (req.user && req.body.id) {
             var exid = req.body.id;
+
             if (req.body.textvalue && req.body.titre && req.user) {
-                
+  
                 // traitement nouvel article
                 var titre = req.body.titre;
                 var urljade = req.body.urljade;
@@ -132,10 +133,8 @@ module.exports = function(app, fs, formidable, appData) {
                 var date = req.body.date;
                 var datemodif = convertDate(new Date());
 
-
-                // suppression de l'ancien
+                // suppression de l'ancien si différent
                 fs.unlink(app.get('views') + '/article/' + exid + '.jade');
-
                 Article.find({ id : exid }).remove().exec();
 
                 // ajout du modifié
@@ -165,6 +164,7 @@ module.exports = function(app, fs, formidable, appData) {
             var id = req.params.id;
 
             Article.findOne({ id : id }, function (err, article) {
+                
                 article.enligne = true;
                 article.save(function (err, article) {
                     if (err) return console.error(err);

@@ -3,6 +3,8 @@ block principal
   .principal 
     h2 todo
     ul
+      li faire de la bogossitude avec 
+        a(href="https://highlightjs.org/") highlightjs
       li créer un import d'images pour les utiliser dans les articles
       li créer les routes / vues contact et profil
       li finir / améliorer  le design 
@@ -23,7 +25,8 @@ block principal
               td 
                 | #{article.date}
                 if (article.date != article.datemodif)
-                  | &nbsp;(modifié #{article.datemodfi})
+                  em
+                    | &nbsp;(modif le #{article.datemodif})
               td
                 a(href="/admin/article/edit/#{article.id}") modif.
                 | &nbsp/&nbsp;
@@ -45,9 +48,9 @@ block principal
     // formulaire d'ajout via le textarea
     h2 ajouter un article (textarea jade)
     form(action="/admin/article/add", method="post")
-      label(for="titre") titre
+      label(for="titre") titre 
       input(type="text", id="titre", name="titre", required)
-      label(for="urljade") url / jade
+      label(for="urljade") url / jade 
       input(type="text", id="urljade", name="urljade", required)      
       br
       textarea(name="textjade", rows="10", cols="100", id="textjade")

@@ -43,7 +43,6 @@ module.exports = function(app, fs, formidable, appData) {
                     fs.readFile(files.jadefile.path, 'utf8', function (err, data) {
 
                         // créer un fichier formaté et y ajouter le contenu
-                        console.log(fields);
                         var titre = fields.titre;
                         var urljade = fields.urljade;
                         var id = Date.now() + '-' + urljade;
@@ -174,7 +173,20 @@ module.exports = function(app, fs, formidable, appData) {
         res.redirect('/admin');
     });
 
-
+    // POST - upload d'une photo vers /img/biblio/
+    app.post('/admin/img/add', function (req, res) {
+        if (req.user) {
+            var form = new formidable.IncomingForm();
+            form.parse(req, function (err, fields, files) {
+                fs.readFile(files.img.path, function (err, data) {
+                    fs.writeFile(app.get('public') + '/img/biblio/' + files.img.name, data, function (err) {
+                        if (err) console.log(err);
+                    });
+                });
+            });
+        }
+        res.redirect('/admin');
+    });
 };
 
 // format dd/MM/yyyy

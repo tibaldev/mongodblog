@@ -1,0 +1,18 @@
+#menu
+  h3 Bienvenue !
+  p
+    | Lorem ipsum dolor sit amet, consectetur adipisicing elit. Phaedrum saepe loqueretur iucundum priventur timentis lineam perfunctio, putant modum dediti sequamur exeduntur plerisque provocatus accedit ordinem.
+  p
+    | Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+  p
+    | Thibaud
+
+  if (articles)
+    h3 Articles
+    if (articles.length > 0)
+      ul#articles
+        for article in articles
+          li 
+            a(href="/article/#{article.id}") #{article.titre}
+    else
+      p aucun article

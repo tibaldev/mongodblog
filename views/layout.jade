@@ -5,19 +5,19 @@ html
     link(rel="stylesheet", href="/css/style.css")
     link(rel="stylesheet", href="/css/tomorrow-night.css")
   body
+    include ./include/head.jade
     #global
-      include ./include/head.jade
-      #centre
-        include ./include/navigation.jade
-        #contenu
-          article
-            if (article)
-              h2 #{article.titre}
-              div.infos
-                | rédigé le #{article.date}
-                if (article.date != article.datemodif)
-                  | &nbsp;(modifié le #{article.datemodif})
-            block article
+      #contenu
+        include ./include/menu.jade
+        article
+          if (article)
+            h2 #{article.titre}
+            div.infos
+              | rédigé le #{article.date}
+              if (article.date != article.datemodif)
+                | &nbsp;(modifié le #{article.datemodif})            
+          block article
+      include ./include/foot.jade
 
     script(type="text/javascript", src="/js/jquery.js")
     script(type="text/javascript", src="/js/highlight.pack.js")

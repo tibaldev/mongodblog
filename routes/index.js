@@ -3,16 +3,14 @@ var Article = require('../models/db_Article');
 module.exports = function(app, appData) {
     // GET - Accueil
     app.get('/', function (req, res) {
-        
+
         // Récupérer les articles (pour la liste de gauche)
         Article.find({ enligne: true}).sort({id: 'desc'}).exec(function (err, articles) {
-
             // Article le plus récent pour la page d'accueil
             Article.findOne({ enligne: true }).sort({id: 'desc'}).exec(function (err, article) {
                 if (article && !err) {
                     res.render('article/' + article.id, { 
-                        'title': appData.title, 
-                        'h1': appData.title, 
+                        'title': appData.title,
                         articles: articles,
                         article: article
                     });
@@ -23,6 +21,7 @@ module.exports = function(app, appData) {
         });
     });
 
+    // GET - Vue d'un article 
     app.get('/article/:id', function (req, res) {
         if (req.params.id) { 
             var id = req.params.id;
@@ -31,7 +30,6 @@ module.exports = function(app, appData) {
                     Article.find({ enligne: true }).sort({id: 'desc'}).exec(function(err, articles) {
                         res.render('article/' + id, {
                             'title': appData.title + ' - ' + article.titre, 
-                            'h1': appData.title, 
                             articles: articles,
                             article: article
                         });
@@ -43,11 +41,8 @@ module.exports = function(app, appData) {
         }
     });
 
-    app.get('/contact', function (req, res) {
-
-    });    
-
-    app.get('/cv', function (req, res) {
-
+    // GET - Page du profil / CV
+    app.get('/profil', function (req, res) {
+        res.render('profil', {});
     });
 };

@@ -1,6 +1,6 @@
 extend layout
 block principal
-  .principal 
+  .principal
     h2 todo
     ul
       li faire de la bogossitude avec 
@@ -39,11 +39,7 @@ block principal
     else
       p aucun article
 
-    // formulaire d'ajout d'img dans /img/biblio/
-    h2 upload d'images (/img/biblio/)
-    form(action="/admin/img/add", method="post", enctype="multipart/form-data")
-      input(type="file", name="img", required)
-      input(type="submit" value="hop !")
+    hr
 
     // formulaire d'ajout via le textarea
     h2 ajouter un article (textarea jade)
@@ -69,6 +65,14 @@ block principal
       label(for="urljade") url / jade
       input(type="text", id="urljade", name="urljade", required)
       input(type="file", name="jadefile", required)
+      input(type="submit" value="hop !")
+
+    hr
+
+    // formulaire d'ajout d'img dans /img/biblio/
+    h2 upload d'images (/img/biblio/)
+    form(action="/admin/img/add", method="post", enctype="multipart/form-data")
+      input(type="file", name="img", required)
       input(type="submit" value="hop !")
 
   script(type="text/javascript", src='/js/jquery.js')

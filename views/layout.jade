@@ -15,7 +15,8 @@ html
             div.infos
               | rédigé le #{article.date}
               if (article.date != article.datemodif)
-                | &nbsp;(modifié le #{article.datemodif})            
+                | &nbsp;(modifié le #{article.datemodif})     
+            hr       
           block article
       include ./include/foot.jade
 

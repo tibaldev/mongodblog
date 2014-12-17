@@ -4,6 +4,7 @@ html
     title #{title}
     link(rel="stylesheet", href="/css/style.css")
     link(rel="stylesheet", href="/css/tomorrow-night.css")
+    meta(charset="UTF-8")
   body
     include ./include/head.jade
     #global
@@ -16,7 +17,7 @@ html
               | rédigé le #{article.date}
               if (article.date != article.datemodif)
                 | &nbsp;(modifié le #{article.datemodif})     
-            hr       
+            hr.first       
           block article
       include ./include/foot.jade
 

@@ -1,17 +1,11 @@
-@font-face {
-    font-family: 'Myriad Pro Regular';
-    font-style: normal;
-    font-weight: normal;
-    src: url('fonts/myriadpro-regular.woff') format('woff');
-}
-
 body {
     background: #FAFAFA url(img/noiseblanc.png) 0 0 repeat;
     color: #3D3D3D;
-    font-family: Arial;
+    font-family: 'Arial';
+    font-size: 1em;
     padding: 0;
     margin: 0;
-    min-height: 970px;
+    min-height: 800px;
 }
 
 header {
@@ -45,55 +39,58 @@ header h1 {
 
 .postit h2 {
     margin-top: -42px;
+}
+.postit h3 {
+    margin-bottom: 0;
 } 
 
 #perso {
     width: 250px;
-    transform: rotate(1deg);
+    /*transform: rotate(1deg);*/    
     top: -40px;
     left: 550px;
 }
 
 #formation {
     width: 400px;
-    transform: rotate(-2deg);
+    /*transform: rotate(-1deg);*/
     top: 30px;
     left: 0px;
 }
 
 #xppro {
     width: 400px;
-    transform: rotate(2deg);
+    /*transform: rotate(1deg);*/
     top: 150px;
     left: 470px;
 }
 
 #competenceinfo {
     width: 309px;
-    transform: rotate(1deg);
+    /*transform: rotate(1deg);*/
     top: 398px;
     left: 60px;
 }
 
 #loisir {
     width: 335px;
-    transform: rotate(-1deg);
+    /*transform: rotate(-1deg);*/
     top: 523px;
     left: 485px;
 }
 
 #fichier {
     width: 244px;  
-    transform: rotate(2deg);
-    top: 726px;
-    left: 502px;
+    /*transform: rotate(1deg);*/
+    top: 676px;
+    left: 84px;
 }
 
 #lien {
     width: 156px;
-    transform: rotate(-1deg);
-    top: 816px;
-    left: 540px;
+    /*transform: rotate(-1deg);*/
+    top: 676px;
+    left: 559px;
 }
 
 ul li {
@@ -101,28 +98,19 @@ ul li {
     margin-left: -40px;
 }
 
-
 p {
     margin: 0;
 }
 
-/*from site*/
-/*.post-it {
-background:#fefabc; 
-padding:15px; 
-font-family: 'Gloria Hallelujah', cursive; 
-font-size:15px; 
-color: #000; 
-width:200px; 
+a,
+a:hover,
+a:visited {
+    color: #3D3D3D;
+}
 
--moz-transform: rotate(7deg);
--webkit-transform: rotate(7deg);
--o-transform: rotate(7deg);
--ms-transform: rotate(7deg);
-transform: rotate(7deg);
+a,
+a:hover {
+    text-decoration: underline;
+}
 
-box-shadow: 0px 4px 6px #333;
--moz-box-shadow: 0px 4px 6px #333;
--webkit-box-shadow: 0px 4px 6px #333;
 
-}*/

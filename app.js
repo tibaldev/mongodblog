@@ -6,7 +6,6 @@ var path           = require('path'),
     fs             = require('fs'),
     bodyParser     = require('body-parser'),
     session        = require('express-session'),
-    methodOverride = require('method-override'),
     errorHandler   = require('errorhandler'),
     mongoose       = require('mongoose'),
     passport       = require('passport'),
@@ -19,10 +18,9 @@ app.set('port', process.env.PORT || appData.port);
 app.set('views', __dirname + '/views');
 app.set('public', __dirname + '/public');
 app.set('view engine', 'jade');
-app.set('env', 'development');
+app.set('env', appData.env);
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
-app.use(methodOverride());
 app.use(session({secret: 'abitbol', resave: true, saveUninitialized: true}));
 app.use(passport.initialize());
 app.use(passport.session());
@@ -45,9 +43,9 @@ app.get('*', function(req, res) {
     res.status(404).render('404', { title: appData.title });
 });
 
-
 /** --- SERVEUR --- **/
-if ('development' == app.get('env')) {
+if (app.get('env') == 'dev') {
     app.use(errorHandler());
 }
+
 app.listen(app.get('port'));

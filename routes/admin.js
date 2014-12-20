@@ -57,22 +57,6 @@ module.exports = function(app, appData) {
             req.logout();
             res.redirect('/admin');
         });
-
-
-    // app.route('/admin/register')
-    //     // GET - formulaire de création de compte
-    //     .get(function (req, res) {
-    //         res.render('admin/register');
-    //     })
-    //     // POST - création du compte
-    //     .post(function (req, res) {
-    //         Account.register(
-    //             new Account({ username : req.body.username }), req.body.password, function (err, account) {
-    //             passport.authenticate('local')(req, res, function () {
-    //                 res.redirect('/admin');
-    //             });
-    //         });
-    //     });
 };
 
 var connected = function (req, res, next) {

@@ -1,4 +1,5 @@
 node_modules/
+script/register.js
 views/article/
 views/profil.jade
 public/img/biblio/

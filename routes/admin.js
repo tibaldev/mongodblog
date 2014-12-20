@@ -4,53 +4,81 @@ var Article = require('../models/db_Article');
 
 module.exports = function(app, appData) {
     
-    // GET - accueil admin
-    app.get('/admin', function (req, res) {
-        if (req.user) {
+    app.route('/admin')
+        // GET - accueil admin
+        .get(connected, function (req, res) {
             // Récupérer les articles
             Article.find({}).sort({id: 'desc'}).exec(function (err, articles) {
                 res.render('admin/', { user: req.user, articles: articles });
             });
-        } else {
+        });
+
+
+    app.route('/admin/login')
+        // GET - formulaire de connexion back-end
+        .get(function (req, res) {
             res.render('admin/login');
-        }
-    });
-
-
-    // GET - formulaire de connexion back-end
-    app.get('/admin/login', function (req, res) {
-        res.render('admin/login');
-    });
+        })
+        // POST - login (authentification)
+        .post(passport.authenticate('local'), function (req, res) {
+            res.redirect('/admin');
+        });
     
-    // GET - formulaire d'ajout d'admin 
-    app.get('/admin/register', function (req, res) {
-        if (req.user) {
-            res.render('admin/register');
-        }
-    });
 
-    // GET - déconnexion back-end
-    app.get('/admin/logout', function (req, res) {
-        req.logout();
-        res.redirect('/admin');
-    });
+    app.route('/admin/pass')
+        // GET - formulaire du changement de mdp 
+        .get(connected, function (req, res) {
+            res.render('admin/pass', { user: req.user });
+        })
+        // POST - changement du pass
+        .post(passport.authenticate('local', { 
+                failureRedirect: '/admin/pass',
+            }), function (req, res) {
+                if (req.body.newpassword) {
+                    Account.findByUsername(req.user.username, function (err, account) {
+                        account.setPassword(req.body.newpassword, function (err) {
+                            if (err) {
+                                console.log(err);
+                            } else {
+                                account.save();
+                            }
+                        })
+                    });
+                } else {
+                    return res.render('admin/pass', { user: req.user });
+                }
+                res.redirect('/admin');
+            });
+    
 
-    // POST - login (authentification)
-    app.post('/admin/login', passport.authenticate('local'), function (req, res) {
-        res.redirect('/admin');
-    });
+    app.route('/admin/logout')
+        // GET - déconnexion back-end
+        .get(function (req, res) {
+            req.logout();
+            res.redirect('/admin');
+        });
 
-    // POST - register (ajout du compte)
-    app.post('/admin/register', function (req, res) {
-        Account.register(
-            new Account({ username : req.body.username }), req.body.password, function(err, account) {
-            if (err) {
-	            return res.render('admin/register', { account: account });
-	        }
 
-	        passport.authenticate('local')(req, res, function () {
-	        	res.redirect('/admin');
-	        });
-	    });
-	});
+    // app.route('/admin/register')
+    //     // GET - formulaire de création de compte
+    //     .get(function (req, res) {
+    //         res.render('admin/register');
+    //     })
+    //     // POST - création du compte
+    //     .post(function (req, res) {
+    //         Account.register(
+    //             new Account({ username : req.body.username }), req.body.password, function (err, account) {
+    //             passport.authenticate('local')(req, res, function () {
+    //                 res.redirect('/admin');
+    //             });
+    //         });
+    //     });
 };
+
+var connected = function (req, res, next) {
+    if (req.user) {
+        return next();
+    } else {
+        res.redirect('/admin/login');
+    }
+}

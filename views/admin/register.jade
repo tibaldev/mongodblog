@@ -1,9 +1,6 @@
-extend layout
-block principal
-  .principal
-    form(action="/admin/register", method="post")
-      fieldset
-        legend nouvel admin
-        input(type="text", name="username", placeholder="pseudo")
-        input(type="password", name="password", placeholder="pass")
-        input(type="submit" value="hop !")
+form(action="/admin/register", method="post")
+  fieldset
+    legend création d'un nouveau compte
+    input(type="text", name="username", placeholder="pseudo", required)
+    input(type="password", name="password", placeholder="pass", required)
+    input(type="submit" value="hop !")

@@ -1,12 +1,11 @@
 extend layout
 block principal
   .principal
-    h2 todo
-    ul
-      li
-        b faire un projet auth/passport avec des messages d'erreur
-      li design du cv
 
+    if (msg)
+      .div.msg
+        #{msg}
+  
     h2 liste des articles (desc)
     if (articles.length > 0)
       table

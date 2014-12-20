@@ -1,6 +1,7 @@
 {
   "name": "mongodblog",
   "description": "Blog codé avec nodejs, express, mongodb",
+  "main": "server.js",
   "version": "0.0.1",
   "private": "true",
   "dependencies": {
@@ -12,7 +13,7 @@
     "jade": "1.x",
     "mongodb": "1.x",
     "mongoose": "3.x.x",
-    "passport": "0.2",
+    "passport": "0.x",
     "passport-local": "1.x.x",
     "passport-local-mongoose": "1.x",
     "formidable": "1.x.x"

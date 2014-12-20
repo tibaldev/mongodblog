@@ -1,0 +1,10 @@
+extend layout
+block principal
+  .principal
+    form(action="/admin/pass", method="post")
+      fieldset
+        legend changer de mdp
+        input(type="password", name="password", placeholder="ancien mdp")
+        input(type="password", name="newpassword", placeholder="nouveau mdp")
+        input(type="hidden", name="username", value="#{user.username}", placeholder="nouveau mdp")
+        input(type="submit" value="hop !")

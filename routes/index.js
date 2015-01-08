@@ -45,7 +45,7 @@ module.exports = function(app, appData) {
             }
         });
 
-    app.route('/profil')
+    app.route('/cv-thibaud-tallon')
         // GET - Page du profil / CV
         .get(function (req, res) {
             res.render('profil', {});

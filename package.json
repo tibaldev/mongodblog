@@ -1,9 +1,13 @@
 {
   "name": "mongodblog",
-  "description": "Blog codé avec nodejs, express, mongodb",
-  "main": "server.js",
+  "description": "Blog NodeJS avec Express 4, MongoDB",
   "version": "0.0.1",
-  "private": "true",
+  "engines": {
+    "node": "0.10.x"
+  },
+  "scripts": {
+    "start": "node server"
+  },
   "dependencies": {
     "express": "4.x",
     "body-parser": "1.x.x",
@@ -11,7 +15,7 @@
     "cookie-parser": "1.x.x",
     "errorhandler": "1.x.x",
     "jade": "1.x",
-    "mongodb": "1.x",
+    "mongodb": "1.4.x",
     "mongoose": "3.x.x",
     "passport": "0.x",
     "passport-local": "1.x.x",

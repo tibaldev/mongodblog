@@ -5,7 +5,6 @@ body {
     font-size: 1em;
     padding: 0;
     margin: 0;
-    min-height: 800px;
 }
 
 header {
@@ -24,93 +23,133 @@ header h1 {
 #global {
     position: relative;
     width: 960px;
-    margin: 14px auto 0 auto;
-}
-
-.postit {
-    position: absolute;
-    /*background-color: #FCF7B3; */
+    min-height: 1205px;
+    margin: 14px auto 14px auto;
     background-color: #FFFFFF; 
-    padding: 15px; 
-    font-size: 15px;  
-    width: 500px;
     box-shadow: 0px 0px 2px #333333;
+    font-size: 15px;  
+    padding: 15px; 
 }
 
-.postit h2 {
-    margin-top: -42px;
+#global h2 {
+    color: #417199;
 }
-.postit h3 {
-    margin-bottom: 0;
-} 
+
+#global li {
+    padding: 2px;
+    list-style-image: url("img/arrow.png")
+}
 
 #perso {
-    width: 250px;
-    /*transform: rotate(1deg);*/    
-    top: -40px;
-    left: 550px;
-}
-
-#formation {
-    width: 400px;
-    /*transform: rotate(-1deg);*/
-    top: 30px;
+    position: absolute;
+    top: 0px;
     left: 0px;
+    width: 480px;
 }
 
-#xppro {
-    width: 400px;
-    /*transform: rotate(1deg);*/
-    top: 150px;
-    left: 470px;
+#perso img {
+    position: relative;
+    top: 2px;
+    margin-right: 8px;
+    width: 16px;
+    height: 16px;
 }
 
-#competenceinfo {
-    width: 309px;
-    /*transform: rotate(1deg);*/
-    top: 398px;
-    left: 60px;
+#photo {
+    position: absolute;
+    top: 10px;
+    left: 440px;
+    width: 537px;
+    border-left: 1px dotted #7FABDC;
 }
 
-#loisir {
-    width: 335px;
-    /*transform: rotate(-1deg);*/
-    top: 523px;
-    left: 485px;
+#photo img {
+    display: block;
+    float: right;
+    width: 140px;
+    height: 140px;
+    border-radius: 5px;
 }
 
-#fichier {
-    width: 244px;  
-    /*transform: rotate(1deg);*/
-    top: 676px;
-    left: 84px;
+#blocsuite {
+    position: absolute;
+    top: 164px;
+    left: 21px;
+    width: 957px;
+    border-top: 1px dotted #7FABDC;
 }
 
-#lien {
-    width: 156px;
-    /*transform: rotate(-1deg);*/
-    top: 676px;
-    left: 559px;
-}
-
-ul li {
-    list-style: none;
-    margin-left: -40px;
-}
-
-p {
+#blocsuite p {
     margin: 0;
 }
 
-a,
-a:hover,
-a:visited {
-    color: #3D3D3D;
+#blocsuite li {
+    margin-left: -20px;
 }
 
-a,
-a:hover {
+#formation,
+#xpperso {
+    border-top: 1px dotted #7FABDC;
+}
+
+#duo {
+    position: relative;
+    border-top: 1px dotted #7FABDC;
+}
+
+#duo h2 {
+    margin-top: 10px;
+}
+
+#compinfo {
+    position: absolute;
+    width: 419px;
+    top: 10px;
+    left: 0px;
+    border-right: 1px dotted #7FABDC;
+}
+
+#compinfo h3,
+#loisirs h3 {
+    margin: 0;
+}
+
+#compinfo li,
+#loisirs li {
+    margin-bottom: 10px;
+}
+
+#loisirs {
+    position: absolute;
+    width: 510px;
+    top: 10px;
+    left: 420px;
+    padding-left: 25px;
+}
+
+
+#liens {
+    margin-top: -8px;
+}
+
+#liens img {
+    width: 24px;
+    height: 24px;
+    position: relative;
+    top: 2px;
+    margin-right: 8px;
+}
+#liens a,
+#liens a:hover,
+#liens a:visited {
+    text-decoration: none;
+    color: #417199;
+}
+#liens a:hover {
     text-decoration: underline;
 }
+
+
+
 
 

@@ -129,7 +129,7 @@ module.exports = function(app, fs, formidable, appData) {
 
     app.route('/admin/article/edit')
         // POST - modification d'un article
-        .get(function (req, res) {
+        .post(function (req, res) {
             if (req.user && req.body.id) {
                 var exid = req.body.id;
 
